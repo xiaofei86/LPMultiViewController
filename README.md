@@ -14,6 +14,8 @@ LPSideBarController为侧向滑动展开隐藏分区的控制器
 
 暂时只实现LPHPageViewController（类似于安卓的ViewPager）。效果如下。
 
+注：如果图片不能显示请尝试将VPN设为全局模式，也可以通过备用链接查看
+
 [备用链接](http://b.picphotos.baidu.com/album/s%3D680%3Bq%3D90/sign=2f14d669af773912c0268669c822f725/37d12f2eb9389b5096d570868335e5dde7116e38.jpg)
 
 <img src = "https://github.com/xiaofei86/LPMultiViewController/raw/master/Images/1.gif" width = 373>
