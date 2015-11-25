@@ -18,7 +18,7 @@ LPSideBarController为侧向滑动展开隐藏分区的控制器
 
 <img src = "https://github.com/xiaofei86/LPMultiViewController/raw/master/Images/1.gif" width = 373>
 
-帮推客[备用链接](http://g.picphotos.baidu.com/album/s%3D680%3Bq%3D90/sign=e99cfd267f310a55c024ddfc877e3294/caef76094b36acaf3077f1297ad98d1000e99c4b.jpg)
+[备用链接](http://g.picphotos.baidu.com/album/s%3D680%3Bq%3D90/sign=e99cfd267f310a55c024ddfc877e3294/caef76094b36acaf3077f1297ad98d1000e99c4b.jpg)
 
 <img src = "https://github.com/xiaofei86/LPMultiViewController/raw/master/Images/2.png" width = 373>
 
