@@ -9,7 +9,7 @@
 #import "LPHPageController.h"
 #import "UIViewController+Items.h"
 
-static CGFloat _duration = 2.5;
+static CGFloat _duration = 0.25;
 
 @interface LPHPageController () <UIScrollViewDelegate, LPHPageBarDelegate>
 
@@ -20,10 +20,19 @@ static CGFloat _duration = 2.5;
     BOOL _isSelectedScroll;
 }
 
+#pragma mark - Initialization
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
+    return self;
+}
+
 #pragma mark - UiViewController
 
 - (void)loadView {
-    self.edgesForExtendedLayout = UIRectEdgeNone;
     [super loadView];
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -50,7 +59,7 @@ static CGFloat _duration = 2.5;
     
     NSMutableArray<LPHPageBarItem *> *items = [NSMutableArray array];
     [_viewControllers enumerateObjectsUsingBlock:^(UIViewController *vc, NSUInteger idx, BOOL *stop) {
-        //vc.hPageController = self;//TODO
+        vc.hPageController = self;
         vc.view.frame = CGRectMake(self.view.bounds.size.width * idx, 0, 0, 0);
         [_scrollView addSubview:vc.view];
         [self addChildViewController:vc];
@@ -60,19 +69,28 @@ static CGFloat _duration = 2.5;
         }
         [items addObject:vc.pageBarItem];
     }];
-    
     _pageBar.topViewRect = _topView.frame;
     _pageBar.items = items;
     [self.view addSubview:_pageBar];
+    
+    if (_bottomView) {
+        [self.view bringSubviewToFront:_bottomView];
+    }
+    if (_topView) {
+        [self.view bringSubviewToFront:_topView];
+    }
 }
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    CGFloat topOffset = _topView.bounds.size.height + _pageBar.bounds.size.height;
-    CGFloat bottomOffset = _bottomView.bounds.size.height;
-    _scrollView.frame = CGRectMake(0, topOffset,
+    [self reloadFrame];
+}
+
+- (void)reloadFrame {
+    _pageBar.center = CGPointMake(_pageBar.center.x, _topView.frame.size.height + _pageBar.frame.size.height * (0.5 - _offsetScale));
+    _scrollView.frame = CGRectMake(0, CGRectGetMaxY(_pageBar.frame),
                                    self.view.bounds.size.width,
-                                   self.view.bounds.size.height - topOffset - bottomOffset);
+                                   self.view.bounds.size.height - CGRectGetMaxY(_pageBar.frame) - _bottomView.bounds.size.height);
     _scrollView.contentSize = CGSizeMake(self.view.bounds.size.width * _viewControllers.count, 0);
 }
 
@@ -111,11 +129,23 @@ static CGFloat _duration = 2.5;
     [self.view addSubview:_bottomView];
 }
 
+- (void)setOffsetScale:(CGFloat)offsetScale {
+    _offsetScale = offsetScale;
+    [self reloadFrame];
+}
+
+- (void)setScrollEnable:(BOOL)scrollEnable {
+    _scrollEnable = scrollEnable;
+    _scrollView.scrollEnabled = _scrollEnable;
+    _pageBar.userInteractionEnabled = _scrollEnable;
+}
+
 #pragma mark - Public
 
 - (void)reloadPageBarViews {
     if (_pageBar) {
         [_pageBar reloadViews];
+        [self reloadFrame];
     }
 }
 

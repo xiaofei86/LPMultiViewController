@@ -32,7 +32,7 @@ static const void *vPageControllerKey = &vPageControllerKey;
 }
 
 - (void)setHPageController:(LPHPageController *)hPageController {
-    objc_setAssociatedObject(self, hPageControllerKey, hPageController, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, hPageControllerKey, hPageController, OBJC_ASSOCIATION_ASSIGN);
 }
 
 - (LPVPageController *)vPageController {
@@ -40,7 +40,7 @@ static const void *vPageControllerKey = &vPageControllerKey;
 }
 
 - (void)setVPageController:(LPVPageController *)vPageController {
-    objc_setAssociatedObject(self, vPageControllerKey, vPageController, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, vPageControllerKey, vPageController, OBJC_ASSOCIATION_ASSIGN);
 }
 
 @end

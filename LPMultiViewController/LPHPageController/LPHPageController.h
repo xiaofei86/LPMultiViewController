@@ -23,6 +23,10 @@
 
 @property (nonatomic, assign) NSUInteger selectedIndex;
 
+@property (nonatomic, assign) CGFloat offsetScale;
+
+@property (nonatomic, assign) BOOL scrollEnable;
+
 - (void)reloadViews;
 
 - (void)reloadPageBarViews;
