@@ -154,7 +154,20 @@ static CGFloat _duration = 0.25;
 - (void)didSelectedAtSection:(NSInteger)section withDuration:(NSTimeInterval)duration {
     _isSelectedScroll = YES;
     _duration = duration;
+    
+    [_viewControllers[_selectedIndex] lp_viewWillDisappear:NO];
+    UIViewController *previousController = _viewControllers[_selectedIndex];
+    [self performWithDelay:_duration completion:^{
+        [previousController lp_viewDidDisappear:NO];
+    }];
+    
     self.selectedIndex = section;
+    
+    [_viewControllers[_selectedIndex] lp_viewWillAppear:NO];
+    UIViewController *nextController = _viewControllers[_selectedIndex];
+    [self performWithDelay:_duration completion:^{
+        [nextController lp_viewDidAppear:NO];
+    }];
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -174,6 +187,21 @@ static CGFloat _duration = 0.25;
             _selectedIndex += (NSInteger)offsetScale;
         }
     }
+    
+    [self.view endEditing:YES];
+}
+
+#pragma mark - RunLoop
+
+- (void)performWithDelay:(CGFloat)delay completion:(void (^)(void))block {
+    block = [block copy];
+    [self performSelector:@selector(fireBlockAfterDelay:)
+               withObject:block
+               afterDelay:delay];
+}
+
+- (void)fireBlockAfterDelay:(void (^)(void))block {
+    block();
 }
 
 @end

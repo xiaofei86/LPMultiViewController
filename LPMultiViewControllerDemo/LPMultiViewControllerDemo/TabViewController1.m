@@ -20,4 +20,9 @@
     self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    NSLog(@"1");
+}
+
 @end

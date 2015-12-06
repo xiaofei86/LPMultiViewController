@@ -16,9 +16,12 @@
 @interface UIViewController (Items)
 
 @property (nonatomic, strong) LPHPageBarItem *pageBarItem;
-
 @property (nonatomic, assign) LPHPageController *hPageController;
-
 @property (nonatomic, assign) LPVPageController *vPageController;
+
+- (void)lp_viewWillAppear:(BOOL)animated;
+- (void)lp_viewDidAppear:(BOOL)animated;
+- (void)lp_viewWillDisappear:(BOOL)animated;
+- (void)lp_viewDidDisappear:(BOOL)animated;
 
 @end

@@ -43,4 +43,20 @@ static const void *vPageControllerKey = &vPageControllerKey;
     objc_setAssociatedObject(self, vPageControllerKey, vPageController, OBJC_ASSOCIATION_ASSIGN);
 }
 
+- (void)lp_viewWillAppear:(BOOL)animated {
+    NSLog(@"%s%@", __func__, NSStringFromClass([self class]));
+}
+
+- (void)lp_viewDidAppear:(BOOL)animated {
+    NSLog(@"%s%@", __func__, NSStringFromClass([self class]));
+}
+
+- (void)lp_viewWillDisappear:(BOOL)animated {
+    NSLog(@"%s%@", __func__, NSStringFromClass([self class]));
+}
+
+- (void)lp_viewDidDisappear:(BOOL)animated {
+    NSLog(@"%s%@", __func__, NSStringFromClass([self class]));
+}
+
 @end

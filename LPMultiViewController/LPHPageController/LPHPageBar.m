@@ -180,22 +180,24 @@ static const CGFloat _duration = 0.25;
 #pragma mark - Action
 
 - (void)tapGesture:(UIGestureRecognizer *)gestureRecognizer {
-    UILabel *selectedLabel = [_selectedView viewWithTag:_labelTag];
-    UIView *view = gestureRecognizer.view;
-    UILabel *label = [view viewWithTag:_labelTag];
+    self.userInteractionEnabled = NO;
+    UILabel *previousLabel = [_selectedView viewWithTag:_labelTag];
+    UIView *newView = gestureRecognizer.view;
+    UILabel *newLabel = [newView viewWithTag:_labelTag];
+    _selectedView = newView;
     if (_delegate && [_delegate respondsToSelector:@selector(didSelectedAtSection:withDuration:)]) {
-        [_delegate didSelectedAtSection:view.tag - _viewTag withDuration:_duration];
+        [_delegate didSelectedAtSection:newView.tag - _viewTag withDuration:_duration];
     }
     [UIView animateWithDuration:_duration animations:^{
-        selectedLabel.textColor = _textColor;
-        label.textColor = self.tintColor;
+        previousLabel.textColor = _textColor;
+        newLabel.textColor = self.tintColor;
         _indicatorView.frame = CGRectMake(_indicatorView.frame.origin.x,
                                           _indicatorView.frame.origin.y,
-                                          _items[view.tag - _viewTag].indicatorWidth,
+                                          _items[newView.tag - _viewTag].indicatorWidth,
                                           _indicatorHeight);
-        _indicatorView.center = CGPointMake(view.center.x, _indicatorView.center.y);
+        _indicatorView.center = CGPointMake(newView.center.x, _indicatorView.center.y);
     } completion:^(BOOL finished) {
-        _selectedView = view;
+        self.userInteractionEnabled = YES;
     }];
 }
 
