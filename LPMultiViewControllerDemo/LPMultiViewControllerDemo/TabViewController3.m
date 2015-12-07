@@ -19,9 +19,4 @@
     self.view.backgroundColor = [UIColor grayColor];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    NSLog(@"3");
-}
-
 @end

@@ -140,7 +140,7 @@ static const CGFloat _duration = 0.25;
 - (void)setOffsetScale:(CGFloat)offsetScale {
     _offsetScale = offsetScale;
     NSInteger nextCount = _offsetScale / fabs(_offsetScale);
-    //TOREFACTOR
+    //TODO
     if (_selectedView.tag - _viewTag + nextCount > _items.count - 1
         || _selectedView.tag - _viewTag + nextCount < 0) {
         nextCount = 0;

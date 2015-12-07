@@ -94,6 +94,26 @@ static CGFloat _duration = 0.25;
     _scrollView.contentSize = CGSizeMake(self.view.bounds.size.width * _viewControllers.count, 0);
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [_viewControllers[_selectedIndex] lp_viewWillAppear:NO];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [_viewControllers[_selectedIndex] lp_viewDidAppear:NO];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [_viewControllers[_selectedIndex] lp_viewWillDisappear:NO];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [_viewControllers[_selectedIndex] lp_viewDidDisappear:NO];
+}
+
 #pragma mark - Accessors
 
 - (void)setViewControllers:(NSArray<UIViewController *> *)viewControllers {
@@ -184,7 +204,19 @@ static CGFloat _duration = 0.25;
     } else {
         _pageBar.offsetScale = offsetScale;
         if (fabs(offsetScale) >= 1) {
+            [_viewControllers[_selectedIndex] lp_viewWillDisappear:YES];
+            UIViewController *previousController = _viewControllers[_selectedIndex];
+            [self performWithDelay:_duration completion:^{
+                [previousController lp_viewDidDisappear:YES];
+            }];
+            
             _selectedIndex += (NSInteger)offsetScale;
+            
+            [_viewControllers[_selectedIndex] lp_viewWillAppear:YES];
+            UIViewController *nextController = _viewControllers[_selectedIndex];
+            [self performWithDelay:_duration completion:^{
+                [nextController lp_viewDidAppear:YES];
+            }];
         }
     }
     
