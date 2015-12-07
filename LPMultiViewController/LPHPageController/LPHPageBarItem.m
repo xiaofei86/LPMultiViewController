@@ -63,7 +63,7 @@
 - (void)setTitle:(NSString *)title {
     _title = title;
     if (_pageBar) {
-        [_pageBar reloadViews];
+        [_pageBar reloadItems];
     }
 }
 
@@ -84,7 +84,7 @@
 - (void)setShowBadge:(BOOL)showBadge {
     _showBadge = showBadge;
     if (_pageBar) {
-        [_pageBar reloadViews];
+        [_pageBar reloadItems];
     }
 }
 

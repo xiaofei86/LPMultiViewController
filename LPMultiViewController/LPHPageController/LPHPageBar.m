@@ -8,6 +8,7 @@
 
 #import "LPHPageBar.h"
 #import "LPHPageBarItem.h"
+#import "LPHPageController.h"
 
 static CGFloat _textEdgeInsert = 25;
 static CGFloat _badgeEdgeInsert = 4;
@@ -88,12 +89,9 @@ static const CGFloat _duration = 0.25;
             badge.center = CGPointMake(label.bounds.size.width - _textEdgeInsert + _badgeEdgeInsert + _badgeRadius / 2, label.center.y);
             badge.layer.cornerRadius = _badgeRadius / 2;
             badge.layer.masksToBounds = YES;
+            badge.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:64.0/255.0 blue:63.0/255.0 alpha:1];
+            badge.hidden = !_items[i].showBadge;
             badge.tag = _badgeViewTag;
-            if (_items[i].showBadge) {
-                badge.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:64.0/255.0 blue:63.0/255.0 alpha:1];
-            } else {
-                badge.backgroundColor = [UIColor clearColor];
-            }
             
             [view addSubview:label];
             [view addSubview:badge];
@@ -115,6 +113,10 @@ static const CGFloat _duration = 0.25;
     [_scrollView addSubview:_indicatorView];
 }
 
+- (void)reloadItems {
+    [_hPageController reloadPageBarItems];
+}
+
 #pragma mark - Accessors
 
 - (void)setTopViewRect:(CGRect)topViewRect {
@@ -133,8 +135,18 @@ static const CGFloat _duration = 0.25;
 }
 
 - (void)setItems:(NSArray<LPHPageBarItem *> *)items {
-    _items = items;
-    [self reloadViews];
+    if (_items) {
+        _items = items;
+        for (int i = 0; i < _items.count; i++) {
+            UILabel *label = [_itemViews[i] viewWithTag:_labelTag];
+            label.text = items[i].title;
+            UIView *badgeView = [_itemViews[i] viewWithTag:_badgeViewTag];
+            badgeView.hidden = !items[i].showBadge;
+        }
+    } else {
+        _items = items;
+        [self reloadViews];
+    }
 }
 
 - (void)setOffsetScale:(CGFloat)offsetScale {

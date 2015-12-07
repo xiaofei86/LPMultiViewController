@@ -18,6 +18,7 @@ static CGFloat _duration = 0.25;
 @implementation LPHPageController{
     UIScrollView *_scrollView;
     BOOL _isSelectedScroll;
+    BOOL _isScrollBegin;
 }
 
 #pragma mark - Initialization
@@ -26,6 +27,7 @@ static CGFloat _duration = 0.25;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
+        _isScrollBegin = YES;
     }
     return self;
 }
@@ -69,6 +71,7 @@ static CGFloat _duration = 0.25;
         }
         [items addObject:vc.pageBarItem];
     }];
+    _pageBar.hPageController = self;
     _pageBar.topViewRect = _topView.frame;
     _pageBar.items = items;
     [self.view addSubview:_pageBar];
@@ -169,6 +172,14 @@ static CGFloat _duration = 0.25;
     }
 }
 
+- (void)reloadPageBarItems {
+    NSMutableArray<LPHPageBarItem *> *items = [NSMutableArray array];
+    for (UIViewController *vc in _viewControllers) {
+        [items addObject:vc.pageBarItem];
+    }
+    _pageBar.items = items;
+}
+
 #pragma mark - LPHPageBarDelegate
 
 - (void)didSelectedAtSection:(NSInteger)section withDuration:(NSTimeInterval)duration {
@@ -199,24 +210,22 @@ static CGFloat _duration = 0.25;
     if (fmodf(offsetScale, 1) != 0) {
         _isSelectedScroll = NO;
     }
+    if (_isScrollBegin) {
+        [_viewControllers[_selectedIndex] lp_viewWillDisappear:YES];
+        NSInteger offset = offsetScale / fabs(offsetScale) * ceil(fabs(offsetScale));
+        [_viewControllers[_selectedIndex + offset] lp_viewWillAppear:YES];
+        _isScrollBegin = NO;
+    }
+    
     if (_isSelectedScroll) {
-        _selectedIndex += offsetScale;;
+        _selectedIndex += offsetScale;
     } else {
         _pageBar.offsetScale = offsetScale;
         if (fabs(offsetScale) >= 1) {
-            [_viewControllers[_selectedIndex] lp_viewWillDisappear:YES];
-            UIViewController *previousController = _viewControllers[_selectedIndex];
-            [self performWithDelay:_duration completion:^{
-                [previousController lp_viewDidDisappear:YES];
-            }];
-            
+            [_viewControllers[_selectedIndex] lp_viewDidDisappear:YES];
             _selectedIndex += (NSInteger)offsetScale;
-            
-            [_viewControllers[_selectedIndex] lp_viewWillAppear:YES];
-            UIViewController *nextController = _viewControllers[_selectedIndex];
-            [self performWithDelay:_duration completion:^{
-                [nextController lp_viewDidAppear:YES];
-            }];
+            [_viewControllers[_selectedIndex] lp_viewDidAppear:YES];
+            _isScrollBegin = YES;
         }
     }
     

@@ -31,4 +31,6 @@
 
 - (void)reloadPageBarViews;
 
+- (void)reloadPageBarItems;
+
 @end

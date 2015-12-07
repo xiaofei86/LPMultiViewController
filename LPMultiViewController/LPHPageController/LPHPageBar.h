@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class LPHPageBarItem;
+@class LPHPageController;
 
 @protocol LPHPageBarDelegate <NSObject>
 
@@ -30,6 +31,10 @@
 
 @property (nonatomic, assign) id<LPHPageBarDelegate> delegate;
 
+@property (nonatomic, assign) LPHPageController *hPageController;
+
 - (void)reloadViews;
+
+- (void)reloadItems;
 
 @end
