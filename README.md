@@ -77,4 +77,4 @@ LPHPageController可供设置的property有如下这些。
 具体使用方法课参照Demo。
 
 ---
->*已在APP“帮推客”中使用*
+>*已在二个APP中使用*

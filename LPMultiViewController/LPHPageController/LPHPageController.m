@@ -57,6 +57,7 @@ static CGFloat _duration = 0.25;
     _scrollView.pagingEnabled = YES;
     _scrollView.showsHorizontalScrollIndicator = NO;
     _scrollView.bounces = NO;
+    _scrollView.scrollsToTop = NO;
     [self.view addSubview:_scrollView];
     
     NSMutableArray<LPHPageBarItem *> *items = [NSMutableArray array];
