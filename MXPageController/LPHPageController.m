@@ -100,22 +100,22 @@ static CGFloat _duration = 0.25;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [_viewControllers[_selectedIndex] lp_viewWillAppear:NO];
+    [_viewControllers[_selectedIndex] pageViewWillAppear:NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [_viewControllers[_selectedIndex] lp_viewDidAppear:NO];
+    [_viewControllers[_selectedIndex] pageViewDidAppear:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [_viewControllers[_selectedIndex] lp_viewWillDisappear:NO];
+    [_viewControllers[_selectedIndex] pageViewWillDisappear:NO];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    [_viewControllers[_selectedIndex] lp_viewDidDisappear:NO];
+    [_viewControllers[_selectedIndex] pageViewDidDisappear:NO];
 }
 
 #pragma mark - Accessors
@@ -187,18 +187,18 @@ static CGFloat _duration = 0.25;
     _isSelectedScroll = YES;
     _duration = duration;
     
-    [_viewControllers[_selectedIndex] lp_viewWillDisappear:NO];
+    [_viewControllers[_selectedIndex] pageViewWillDisappear:NO];
     UIViewController *previousController = _viewControllers[_selectedIndex];
     [self performWithDelay:_duration completion:^{
-        [previousController lp_viewDidDisappear:NO];
+        [previousController pageViewDidDisappear:NO];
     }];
     
     self.selectedIndex = section;
     
-    [_viewControllers[_selectedIndex] lp_viewWillAppear:NO];
+    [_viewControllers[_selectedIndex] pageViewWillAppear:NO];
     UIViewController *nextController = _viewControllers[_selectedIndex];
     [self performWithDelay:_duration completion:^{
-        [nextController lp_viewDidAppear:NO];
+        [nextController pageViewDidAppear:NO];
     }];
 }
 
@@ -212,9 +212,9 @@ static CGFloat _duration = 0.25;
         _isSelectedScroll = NO;
     }
     if (_isScrollBegin) {
-        [_viewControllers[_selectedIndex] lp_viewWillDisappear:YES];
+        [_viewControllers[_selectedIndex] pageViewWillDisappear:YES];
         NSInteger offset = offsetScale / fabs(offsetScale) * ceil(fabs(offsetScale));
-        [_viewControllers[_selectedIndex + offset] lp_viewWillAppear:YES];
+        [_viewControllers[_selectedIndex + offset] pageViewWillAppear:YES];
         _isScrollBegin = NO;
     }
     
@@ -223,9 +223,9 @@ static CGFloat _duration = 0.25;
     } else {
         _pageBar.offsetScale = offsetScale;
         if (fabs(offsetScale) >= 1) {
-            [_viewControllers[_selectedIndex] lp_viewDidDisappear:YES];
+            [_viewControllers[_selectedIndex] pageViewDidDisappear:YES];
             _selectedIndex += (NSInteger)offsetScale;
-            [_viewControllers[_selectedIndex] lp_viewDidAppear:YES];
+            [_viewControllers[_selectedIndex] pageViewDidAppear:YES];
             _isScrollBegin = YES;
         }
     }

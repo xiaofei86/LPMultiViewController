@@ -8,10 +8,6 @@
 
 #import "TabViewController3.h"
 
-@interface TabViewController3 ()
-
-@end
-
 @implementation TabViewController3
 
 - (void)viewDidLoad {

@@ -1,9 +1,9 @@
 //
 //  AppDelegate.h
-//  LPMultiViewControllerDemo
+//  MXPageControllerDemo
 //
-//  Created by XuYafei on 15/11/9.
-//  Copyright © 2015年 loopeer. All rights reserved.
+//  Created by 徐亚非 on 16/6/12.
+//  Copyright © 2016年 maxthon. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -11,7 +11,6 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
 
 @end
 

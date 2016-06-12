@@ -7,11 +7,6 @@
 //
 
 #import "TabViewController1.h"
-#import "UIViewController+Items.h"
-
-@interface TabViewController1 ()
-
-@end
 
 @implementation TabViewController1
 

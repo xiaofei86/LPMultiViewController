@@ -12,16 +12,12 @@
 #import "TabViewController3.h"
 #import "TabViewController4.h"
 
-@interface ViewController ()
-
-@end
-
 @implementation ViewController
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.navigationItem.title = @"LPHPageController";
+        self.navigationItem.title = @"MXPageController";
     }
     return self;
 }
@@ -29,10 +25,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    TabViewController1 *tabViewController1 = [[TabViewController1 alloc] init];
-    TabViewController2 *tabViewController2 = [[TabViewController2 alloc] init];
-    TabViewController3 *tabViewController3 = [[TabViewController3 alloc] init];
-    TabViewController4 *tabViewController4 = [[TabViewController4 alloc] init];
+    TabViewController1 *tabViewController1 = [TabViewController1 new];
+    TabViewController2 *tabViewController2 = [TabViewController2 new];
+    TabViewController3 *tabViewController3 = [TabViewController3 new];
+    TabViewController4 *tabViewController4 = [TabViewController4 new];
     
     tabViewController1.pageBarItem = [[LPHPageBarItem alloc] initWithTitle:@"tabViewController1"];
     tabViewController2.pageBarItem = [[LPHPageBarItem alloc] initWithTitle:@"viewController2"];

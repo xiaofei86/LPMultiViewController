@@ -8,10 +8,6 @@
 
 #import "TabViewController4.h"
 
-@interface TabViewController4 ()
-
-@end
-
 @implementation TabViewController4
 
 - (void)viewDidLoad {

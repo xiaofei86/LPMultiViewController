@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:LPMultiViewControllerDemo.xcodeproj">
+      location = "self:MXPageControllerDemo.xcodeproj">
    </FileRef>
 </Workspace>

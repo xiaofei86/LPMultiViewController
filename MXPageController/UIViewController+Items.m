@@ -17,7 +17,6 @@ static const void *vPageControllerKey = &vPageControllerKey;
 
 @dynamic pageBarItem;
 @dynamic hPageController;
-@dynamic vPageController;
 
 - (LPHPageBarItem *)pageBarItem {
     return objc_getAssociatedObject(self, pageBarItemKey);
@@ -35,28 +34,20 @@ static const void *vPageControllerKey = &vPageControllerKey;
     objc_setAssociatedObject(self, hPageControllerKey, hPageController, OBJC_ASSOCIATION_ASSIGN);
 }
 
-- (LPVPageController *)vPageController {
-    return objc_getAssociatedObject(self, vPageControllerKey);
+- (void)pageViewWillAppear:(BOOL)animated {
+    
 }
 
-- (void)setVPageController:(LPVPageController *)vPageController {
-    objc_setAssociatedObject(self, vPageControllerKey, vPageController, OBJC_ASSOCIATION_ASSIGN);
+- (void)pageViewDidAppear:(BOOL)animated {
+    
 }
 
-- (void)lp_viewWillAppear:(BOOL)animated {
-    NSLog(@"%s%@", __func__, NSStringFromClass([self class]));
+- (void)pageViewWillDisappear:(BOOL)animated {
+    
 }
 
-- (void)lp_viewDidAppear:(BOOL)animated {
-    NSLog(@"%s%@", __func__, NSStringFromClass([self class]));
-}
-
-- (void)lp_viewWillDisappear:(BOOL)animated {
-    NSLog(@"%s%@", __func__, NSStringFromClass([self class]));
-}
-
-- (void)lp_viewDidDisappear:(BOOL)animated {
-    NSLog(@"%s%@", __func__, NSStringFromClass([self class]));
+- (void)pageViewDidDisappear:(BOOL)animated {
+    
 }
 
 @end
