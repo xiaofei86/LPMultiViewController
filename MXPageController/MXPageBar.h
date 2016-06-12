@@ -1,5 +1,5 @@
 //
-//  LPHPageBar.h
+//  MXPageBar.h
 //  MXPageControllerDemo
 //
 //  Created by 徐亚非 on 16/6/12.
@@ -8,18 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@class LPHPageBarItem;
-@class LPHPageController;
+@class MXPageBarItem;
+@class MXPageController;
 
-@protocol LPHPageBarDelegate <NSObject>
+@protocol MXPageBarDelegate <NSObject>
 
 - (void)didSelectedAtSection:(NSInteger)section withDuration:(NSTimeInterval)duration;
 
 @end
 
-@interface LPHPageBar : UIView
+@interface MXPageBar : UIView
 
-@property (nonatomic, strong) NSArray<LPHPageBarItem* > *items;
+@property (nonatomic, strong) NSArray<MXPageBarItem* > *items;
 
 @property (nonatomic, strong) UIColor *textColor;
 @property (nonatomic, strong) UIFont *itemFont;
@@ -29,9 +29,9 @@
 
 @property (nonatomic, assign) CGFloat offsetScale;
 
-@property (nonatomic, assign) id<LPHPageBarDelegate> delegate;
+@property (nonatomic, weak) id<MXPageBarDelegate> delegate;
 
-@property (nonatomic, assign) LPHPageController *hPageController;
+@property (nonatomic, weak) MXPageController *pageController;
 
 - (void)reloadViews;
 

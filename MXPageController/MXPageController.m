@@ -1,21 +1,21 @@
 //
-//  LPHPageController.m
+//  MXPageController.m
 //  MXPageControllerDemo
 //
 //  Created by 徐亚非 on 16/6/12.
 //  Copyright © 2015年 maxthon. All rights reserved.
 //
 
-#import "LPHPageController.h"
-#import "UIViewController+Items.h"
+#import "MXPageController.h"
+#import "UIViewController+Page.h"
 
 static CGFloat _duration = 0.25;
 
-@interface LPHPageController () <UIScrollViewDelegate, LPHPageBarDelegate>
+@interface MXPageController () <UIScrollViewDelegate, MXPageBarDelegate>
 
 @end
 
-@implementation LPHPageController{
+@implementation MXPageController{
     UIScrollView *_scrollView;
     BOOL _isSelectedScroll;
     BOOL _isScrollBegin;
@@ -38,7 +38,7 @@ static CGFloat _duration = 0.25;
     [super loadView];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    _pageBar = [[LPHPageBar alloc] initWithFrame:CGRectZero];
+    _pageBar = [[MXPageBar alloc] initWithFrame:CGRectZero];
     _pageBar.delegate = self;
     
     _topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 0)];
@@ -60,19 +60,19 @@ static CGFloat _duration = 0.25;
     _scrollView.scrollsToTop = NO;
     [self.view addSubview:_scrollView];
     
-    NSMutableArray<LPHPageBarItem *> *items = [NSMutableArray array];
+    NSMutableArray<MXPageBarItem *> *items = [NSMutableArray array];
     [_viewControllers enumerateObjectsUsingBlock:^(UIViewController *vc, NSUInteger idx, BOOL *stop) {
-        vc.hPageController = self;
+        vc.pageController = self;
         vc.view.frame = CGRectMake(self.view.bounds.size.width * idx, 0, 0, 0);
         [_scrollView addSubview:vc.view];
         [self addChildViewController:vc];
         [vc didMoveToParentViewController:self];
         if (!vc.pageBarItem) {
-            vc.pageBarItem = [[LPHPageBarItem alloc] init];
+            vc.pageBarItem = [[MXPageBarItem alloc] init];
         }
         [items addObject:vc.pageBarItem];
     }];
-    _pageBar.hPageController = self;
+    _pageBar.pageController = self;
     _pageBar.topViewRect = _topView.frame;
     _pageBar.items = items;
     [self.view addSubview:_pageBar];
@@ -174,14 +174,14 @@ static CGFloat _duration = 0.25;
 }
 
 - (void)reloadPageBarItems {
-    NSMutableArray<LPHPageBarItem *> *items = [NSMutableArray array];
+    NSMutableArray<MXPageBarItem *> *items = [NSMutableArray array];
     for (UIViewController *vc in _viewControllers) {
         [items addObject:vc.pageBarItem];
     }
     _pageBar.items = items;
 }
 
-#pragma mark - LPHPageBarDelegate
+#pragma mark - MXPageBarDelegate
 
 - (void)didSelectedAtSection:(NSInteger)section withDuration:(NSTimeInterval)duration {
     _isSelectedScroll = YES;

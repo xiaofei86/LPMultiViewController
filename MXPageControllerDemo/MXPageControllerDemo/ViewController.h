@@ -6,9 +6,9 @@
 //  Copyright © 2015年 maxthon. All rights reserved.
 //
 
-#import "UIViewController+Items.h"
+#import "UIViewController+Page.h"
 
-@interface ViewController : LPHPageController
+@interface ViewController : MXPageController
 
 @end
 

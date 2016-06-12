@@ -1,5 +1,5 @@
 //
-//  UIViewController+Items.h
+//  UIViewController+Page.h
 //  MXPageControllerDemo
 //
 //  Created by 徐亚非 on 16/6/12.
@@ -8,14 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-#import "LPHPageBarItem.h"
-#import "LPHPageBar.h"
-#import "LPHPageController.h"
+#import "MXPageBarItem.h"
+#import "MXPageBar.h"
+#import "MXPageController.h"
 
 @interface UIViewController (Items)
 
-@property (nonatomic, strong) LPHPageBarItem *pageBarItem;
-@property (nonatomic, assign) LPHPageController *hPageController;
+@property (nonatomic, strong) MXPageBarItem *pageBarItem;
+@property (nonatomic, weak) MXPageController *pageController;
 
 - (void)pageViewWillAppear:(BOOL)animated;
 - (void)pageViewDidAppear:(BOOL)animated;

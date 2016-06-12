@@ -1,15 +1,15 @@
 //
-//  LPHPageBarItem.m
+//  MXPageBarItem.m
 //  MXPageControllerDemo
 //
 //  Created by 徐亚非 on 16/6/12.
 //  Copyright © 2015年 maxthon. All rights reserved.
 //
 
-#import "LPHPageBarItem.h"
-#import "LPHPageBar.h"
+#import "MXPageBarItem.h"
+#import "MXPageBar.h"
 
-@implementation LPHPageBarItem
+@implementation MXPageBarItem
 
 #pragma mark - Initialization
 

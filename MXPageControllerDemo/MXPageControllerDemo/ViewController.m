@@ -25,15 +25,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationController.navigationBar.translucent = NO;
+    
     TabViewController1 *tabViewController1 = [TabViewController1 new];
     TabViewController2 *tabViewController2 = [TabViewController2 new];
     TabViewController3 *tabViewController3 = [TabViewController3 new];
     TabViewController4 *tabViewController4 = [TabViewController4 new];
     
-    tabViewController1.pageBarItem = [[LPHPageBarItem alloc] initWithTitle:@"tabViewController1"];
-    tabViewController2.pageBarItem = [[LPHPageBarItem alloc] initWithTitle:@"viewController2"];
-    tabViewController3.pageBarItem = [[LPHPageBarItem alloc] initWithTitle:@"controller3"];
-    tabViewController4.pageBarItem = [[LPHPageBarItem alloc] initWithTitle:@"4"];
+    tabViewController1.pageBarItem = [[MXPageBarItem alloc] initWithTitle:@"tabViewController1"];
+    tabViewController2.pageBarItem = [[MXPageBarItem alloc] initWithTitle:@"viewController2"];
+    tabViewController3.pageBarItem = [[MXPageBarItem alloc] initWithTitle:@"controller3"];
+    tabViewController4.pageBarItem = [[MXPageBarItem alloc] initWithTitle:@"4"];
     
     tabViewController1.pageBarItem.showBadge = YES;
     tabViewController2.pageBarItem.showBadge = NO;

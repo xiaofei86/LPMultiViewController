@@ -1,5 +1,5 @@
 //
-//  LPHPageController.h
+//  MXPageController.h
 //  MXPageControllerDemo
 //
 //  Created by 徐亚非 on 16/6/12.
@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@class LPHPageBarItem;
-@class LPHPageBar;
+@class MXPageBarItem;
+@class MXPageBar;
 
-@interface LPHPageController : UIViewController
+@interface MXPageController : UIViewController
 
-@property (nonatomic, strong) LPHPageBar *pageBar;
+@property (nonatomic, strong) MXPageBar *pageBar;
 
 @property (nonatomic, strong) NSArray<UIViewController *> *viewControllers;
 

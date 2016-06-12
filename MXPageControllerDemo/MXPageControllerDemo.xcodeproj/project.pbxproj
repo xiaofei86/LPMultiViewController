@@ -10,15 +10,15 @@
 		AF602D4C1D0CF5F90047B69D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AF602D4B1D0CF5F90047B69D /* main.m */; };
 		AF602D4F1D0CF5F90047B69D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AF602D4E1D0CF5F90047B69D /* AppDelegate.m */; };
 		AF602D571D0CF5F90047B69D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF602D561D0CF5F90047B69D /* Assets.xcassets */; };
-		AF602D761D0CF6BA0047B69D /* UIViewController+Items.m in Sources */ = {isa = PBXBuildFile; fileRef = AF602D701D0CF6BA0047B69D /* UIViewController+Items.m */; };
+		AF602D761D0CF6BA0047B69D /* UIViewController+Page.m in Sources */ = {isa = PBXBuildFile; fileRef = AF602D701D0CF6BA0047B69D /* UIViewController+Page.m */; };
 		AF602D811D0CF6D90047B69D /* TabViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = AF602D781D0CF6D90047B69D /* TabViewController1.m */; };
 		AF602D821D0CF6D90047B69D /* TabViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = AF602D7A1D0CF6D90047B69D /* TabViewController2.m */; };
 		AF602D831D0CF6D90047B69D /* TabViewController3.m in Sources */ = {isa = PBXBuildFile; fileRef = AF602D7C1D0CF6D90047B69D /* TabViewController3.m */; };
 		AF602D841D0CF6D90047B69D /* TabViewController4.m in Sources */ = {isa = PBXBuildFile; fileRef = AF602D7E1D0CF6D90047B69D /* TabViewController4.m */; };
 		AF602D851D0CF6D90047B69D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF602D801D0CF6D90047B69D /* ViewController.m */; };
-		AF602D8C1D0CF7950047B69D /* LPHPageBar.m in Sources */ = {isa = PBXBuildFile; fileRef = AF602D871D0CF7950047B69D /* LPHPageBar.m */; };
-		AF602D8D1D0CF7950047B69D /* LPHPageBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AF602D891D0CF7950047B69D /* LPHPageBarItem.m */; };
-		AF602D8E1D0CF7950047B69D /* LPHPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF602D8B1D0CF7950047B69D /* LPHPageController.m */; };
+		AF602D8C1D0CF7950047B69D /* MXPageBar.m in Sources */ = {isa = PBXBuildFile; fileRef = AF602D871D0CF7950047B69D /* MXPageBar.m */; };
+		AF602D8D1D0CF7950047B69D /* MXPageBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AF602D891D0CF7950047B69D /* MXPageBarItem.m */; };
+		AF602D8E1D0CF7950047B69D /* MXPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF602D8B1D0CF7950047B69D /* MXPageController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,8 +28,8 @@
 		AF602D4E1D0CF5F90047B69D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		AF602D561D0CF5F90047B69D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AF602D5B1D0CF5F90047B69D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AF602D6F1D0CF6BA0047B69D /* UIViewController+Items.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Items.h"; sourceTree = "<group>"; };
-		AF602D701D0CF6BA0047B69D /* UIViewController+Items.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Items.m"; sourceTree = "<group>"; };
+		AF602D6F1D0CF6BA0047B69D /* UIViewController+Page.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Page.h"; sourceTree = "<group>"; };
+		AF602D701D0CF6BA0047B69D /* UIViewController+Page.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Page.m"; sourceTree = "<group>"; };
 		AF602D771D0CF6D90047B69D /* TabViewController1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabViewController1.h; sourceTree = "<group>"; };
 		AF602D781D0CF6D90047B69D /* TabViewController1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabViewController1.m; sourceTree = "<group>"; };
 		AF602D791D0CF6D90047B69D /* TabViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabViewController2.h; sourceTree = "<group>"; };
@@ -40,12 +40,12 @@
 		AF602D7E1D0CF6D90047B69D /* TabViewController4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabViewController4.m; sourceTree = "<group>"; };
 		AF602D7F1D0CF6D90047B69D /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		AF602D801D0CF6D90047B69D /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		AF602D861D0CF7950047B69D /* LPHPageBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPHPageBar.h; sourceTree = "<group>"; };
-		AF602D871D0CF7950047B69D /* LPHPageBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPHPageBar.m; sourceTree = "<group>"; };
-		AF602D881D0CF7950047B69D /* LPHPageBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPHPageBarItem.h; sourceTree = "<group>"; };
-		AF602D891D0CF7950047B69D /* LPHPageBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPHPageBarItem.m; sourceTree = "<group>"; };
-		AF602D8A1D0CF7950047B69D /* LPHPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPHPageController.h; sourceTree = "<group>"; };
-		AF602D8B1D0CF7950047B69D /* LPHPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPHPageController.m; sourceTree = "<group>"; };
+		AF602D861D0CF7950047B69D /* MXPageBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXPageBar.h; sourceTree = "<group>"; };
+		AF602D871D0CF7950047B69D /* MXPageBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXPageBar.m; sourceTree = "<group>"; };
+		AF602D881D0CF7950047B69D /* MXPageBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXPageBarItem.h; sourceTree = "<group>"; };
+		AF602D891D0CF7950047B69D /* MXPageBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXPageBarItem.m; sourceTree = "<group>"; };
+		AF602D8A1D0CF7950047B69D /* MXPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXPageController.h; sourceTree = "<group>"; };
+		AF602D8B1D0CF7950047B69D /* MXPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXPageController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,14 +102,14 @@
 		AF602D611D0CF6BA0047B69D /* MXPageController */ = {
 			isa = PBXGroup;
 			children = (
-				AF602D861D0CF7950047B69D /* LPHPageBar.h */,
-				AF602D871D0CF7950047B69D /* LPHPageBar.m */,
-				AF602D881D0CF7950047B69D /* LPHPageBarItem.h */,
-				AF602D891D0CF7950047B69D /* LPHPageBarItem.m */,
-				AF602D8A1D0CF7950047B69D /* LPHPageController.h */,
-				AF602D8B1D0CF7950047B69D /* LPHPageController.m */,
-				AF602D6F1D0CF6BA0047B69D /* UIViewController+Items.h */,
-				AF602D701D0CF6BA0047B69D /* UIViewController+Items.m */,
+				AF602D861D0CF7950047B69D /* MXPageBar.h */,
+				AF602D871D0CF7950047B69D /* MXPageBar.m */,
+				AF602D881D0CF7950047B69D /* MXPageBarItem.h */,
+				AF602D891D0CF7950047B69D /* MXPageBarItem.m */,
+				AF602D8A1D0CF7950047B69D /* MXPageController.h */,
+				AF602D8B1D0CF7950047B69D /* MXPageController.m */,
+				AF602D6F1D0CF6BA0047B69D /* UIViewController+Page.h */,
+				AF602D701D0CF6BA0047B69D /* UIViewController+Page.m */,
 			);
 			name = MXPageController;
 			path = ../MXPageController;
@@ -199,15 +199,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF602D8C1D0CF7950047B69D /* LPHPageBar.m in Sources */,
+				AF602D8C1D0CF7950047B69D /* MXPageBar.m in Sources */,
 				AF602D831D0CF6D90047B69D /* TabViewController3.m in Sources */,
 				AF602D821D0CF6D90047B69D /* TabViewController2.m in Sources */,
 				AF602D4F1D0CF5F90047B69D /* AppDelegate.m in Sources */,
-				AF602D8D1D0CF7950047B69D /* LPHPageBarItem.m in Sources */,
+				AF602D8D1D0CF7950047B69D /* MXPageBarItem.m in Sources */,
 				AF602D851D0CF6D90047B69D /* ViewController.m in Sources */,
-				AF602D761D0CF6BA0047B69D /* UIViewController+Items.m in Sources */,
+				AF602D761D0CF6BA0047B69D /* UIViewController+Page.m in Sources */,
 				AF602D811D0CF6D90047B69D /* TabViewController1.m in Sources */,
-				AF602D8E1D0CF7950047B69D /* LPHPageController.m in Sources */,
+				AF602D8E1D0CF7950047B69D /* MXPageController.m in Sources */,
 				AF602D841D0CF6D90047B69D /* TabViewController4.m in Sources */,
 				AF602D4C1D0CF5F90047B69D /* main.m in Sources */,
 			);

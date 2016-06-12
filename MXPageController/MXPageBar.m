@@ -1,14 +1,14 @@
 //
-//  LPHPageBar.m
+//  MXPageBar.m
 //  MXPageControllerDemo
 //
 //  Created by 徐亚非 on 16/6/12.
 //  Copyright © 2015年 maxthon. All rights reserved.
 //
 
-#import "LPHPageBar.h"
-#import "LPHPageBarItem.h"
-#import "LPHPageController.h"
+#import "MXPageBar.h"
+#import "MXPageBarItem.h"
+#import "MXPageController.h"
 
 static CGFloat _textEdgeInsert = 25;
 static CGFloat _badgeEdgeInsert = 4;
@@ -18,7 +18,7 @@ static const NSInteger _labelTag = 456;
 static const NSInteger _badgeViewTag = 789;
 static const CGFloat _duration = 0.25;
 
-@implementation LPHPageBar {
+@implementation MXPageBar {
     UIScrollView *_scrollView;
     NSMutableArray<UIView *> *_itemViews;
     UIView *_selectedView;
@@ -116,7 +116,7 @@ static const CGFloat _duration = 0.25;
 }
 
 - (void)reloadItems {
-    [_hPageController reloadPageBarItems];
+    [_pageController reloadPageBarItems];
 }
 
 #pragma mark - Accessors
@@ -136,7 +136,7 @@ static const CGFloat _duration = 0.25;
     self.frame = CGRectMake(0, _topViewRect.size.height, _topViewRect.size.width, _itemHeight + _indicatorHeight);
 }
 
-- (void)setItems:(NSArray<LPHPageBarItem *> *)items {
+- (void)setItems:(NSArray<MXPageBarItem *> *)items {
     if (_items) {
         _items = items;
         for (int i = 0; i < _items.count; i++) {
@@ -182,9 +182,9 @@ static const CGFloat _duration = 0.25;
     }
     
     UILabel *nextLabel = [nextView viewWithTag:_labelTag];
-    nextLabel.textColor = [LPHPageBar colorFromColor:_textColor toColor:self.tintColor scale:fabs(_offsetScale)];
+    nextLabel.textColor = [MXPageBar colorFromColor:_textColor toColor:self.tintColor scale:fabs(_offsetScale)];
     UILabel *selectedLabel = [_selectedView viewWithTag:_labelTag];
-    selectedLabel.textColor = [LPHPageBar colorFromColor:self.tintColor toColor:_textColor scale:fabs(_offsetScale)];
+    selectedLabel.textColor = [MXPageBar colorFromColor:self.tintColor toColor:_textColor scale:fabs(_offsetScale)];
     
     if (fabs(_offsetScale) >= 1) {
         _selectedView = _itemViews[_selectedView.tag - _viewTag + (NSInteger)_offsetScale];

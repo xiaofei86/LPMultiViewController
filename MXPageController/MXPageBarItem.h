@@ -1,5 +1,5 @@
 //
-//  LPHPageBarItem.h
+//  MXPageBarItem.h
 //  MXPageControllerDemo
 //
 //  Created by 徐亚非 on 16/6/12.
@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@class LPHPageBar;
+@class MXPageBar;
 
-@interface LPHPageBarItem : NSObject
+@interface MXPageBarItem : NSObject
 
 - (instancetype)initWithTitle:(NSString *)title;
 
@@ -29,6 +29,6 @@
 
 @property (nonatomic, strong) UIView *customView;
 
-@property (nonatomic, assign) LPHPageBar *pageBar;
+@property (nonatomic, weak) MXPageBar *pageBar;
 
 @end
