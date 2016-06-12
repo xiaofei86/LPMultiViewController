@@ -1,9 +1,9 @@
 //
 //  LPHPageBar.m
-//  LPMultiViewControllerDemo
+//  MXPageControllerDemo
 //
-//  Created by XuYafei on 15/11/9.
-//  Copyright © 2015年 loopeer. All rights reserved.
+//  Created by 徐亚非 on 16/6/12.
+//  Copyright © 2015年 maxthon. All rights reserved.
 //
 
 #import "LPHPageBar.h"

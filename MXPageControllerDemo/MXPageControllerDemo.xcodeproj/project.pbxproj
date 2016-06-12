@@ -79,16 +79,9 @@
 		AF602D491D0CF5F90047B69D /* MXPageControllerDemo */ = {
 			isa = PBXGroup;
 			children = (
+				AF602D8F1D0CFA230047B69D /* TabControllers */,
 				AF602D4D1D0CF5F90047B69D /* AppDelegate.h */,
 				AF602D4E1D0CF5F90047B69D /* AppDelegate.m */,
-				AF602D771D0CF6D90047B69D /* TabViewController1.h */,
-				AF602D781D0CF6D90047B69D /* TabViewController1.m */,
-				AF602D791D0CF6D90047B69D /* TabViewController2.h */,
-				AF602D7A1D0CF6D90047B69D /* TabViewController2.m */,
-				AF602D7B1D0CF6D90047B69D /* TabViewController3.h */,
-				AF602D7C1D0CF6D90047B69D /* TabViewController3.m */,
-				AF602D7D1D0CF6D90047B69D /* TabViewController4.h */,
-				AF602D7E1D0CF6D90047B69D /* TabViewController4.m */,
 				AF602D7F1D0CF6D90047B69D /* ViewController.h */,
 				AF602D801D0CF6D90047B69D /* ViewController.m */,
 				AF602D561D0CF5F90047B69D /* Assets.xcassets */,
@@ -120,6 +113,21 @@
 			);
 			name = MXPageController;
 			path = ../MXPageController;
+			sourceTree = "<group>";
+		};
+		AF602D8F1D0CFA230047B69D /* TabControllers */ = {
+			isa = PBXGroup;
+			children = (
+				AF602D771D0CF6D90047B69D /* TabViewController1.h */,
+				AF602D781D0CF6D90047B69D /* TabViewController1.m */,
+				AF602D791D0CF6D90047B69D /* TabViewController2.h */,
+				AF602D7A1D0CF6D90047B69D /* TabViewController2.m */,
+				AF602D7B1D0CF6D90047B69D /* TabViewController3.h */,
+				AF602D7C1D0CF6D90047B69D /* TabViewController3.m */,
+				AF602D7D1D0CF6D90047B69D /* TabViewController4.h */,
+				AF602D7E1D0CF6D90047B69D /* TabViewController4.m */,
+			);
+			name = TabControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
