@@ -8,15 +8,22 @@
 
 #import "MXPageBarItem.h"
 #import "MXPageBar.h"
+#import "MXPageBarItem_Private.h"
 
 @implementation MXPageBarItem
+
+@synthesize title = _title;
+@synthesize width = _width;
+@synthesize customView = _customView;
+@synthesize indicatorWidth = _indicatorWidth;
+@synthesize showBadge = _showBadge;
 
 #pragma mark - Initialization
 
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _itemWidth = 0;
+        _width = 0;
         _indicatorWidth = 0;
         _customView = nil;
         _pageBar = nil;
@@ -41,7 +48,7 @@
     self = [super init];
     if (self) {
         _title = title;
-        _itemWidth = itemWidth;
+        _width = itemWidth;
         _indicatorWidth = indicatorWidth;
         _showBadge = showBadge;
     }
@@ -52,7 +59,7 @@
                     indicatorWidth:(CGFloat)indicatorWidth {
     self = [super init];
     if (self) {
-        _itemWidth = customView.frame.size.width;
+        _width = customView.frame.size.width;
         _indicatorWidth = indicatorWidth;
     }
     return self;
@@ -63,35 +70,35 @@
 - (void)setTitle:(NSString *)title {
     _title = title;
     if (_pageBar) {
-        [_pageBar reloadItems];
+        [_pageBar updateItems];
     }
 }
 
 - (void)setItemWidth:(CGFloat)itemWidth {
-    _itemWidth = itemWidth;
+    _width = itemWidth;
     if (_pageBar) {
-        [_pageBar reloadViews];
+        [_pageBar updateView];
     }
 }
 
 - (void)setIndicatorWidth:(CGFloat)indicatorWidth {
     _indicatorWidth = indicatorWidth;
     if (_pageBar) {
-        [_pageBar reloadViews];
+        [_pageBar updateView];
     }
 }
 
 - (void)setShowBadge:(BOOL)showBadge {
     _showBadge = showBadge;
     if (_pageBar) {
-        [_pageBar reloadItems];
+        [_pageBar updateView];
     }
 }
 
 - (void)setCustomView:(UIView *)customView {
     _customView = customView;
     if (_pageBar) {
-        [_pageBar reloadViews];
+        [_pageBar updateView];
     }
 }
 

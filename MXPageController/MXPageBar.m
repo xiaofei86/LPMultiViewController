@@ -7,8 +7,8 @@
 //
 
 #import "MXPageBar.h"
-#import "MXPageBarItem.h"
-#import "MXPageController.h"
+#import "MXPageBar_Private.h"
+#import "MXPageBarItem_Private.h"
 
 static CGFloat _textEdgeInsert = 25;
 static CGFloat _badgeEdgeInsert = 4;
@@ -25,6 +25,9 @@ static const CGFloat _duration = 0.25;
     UIView *_indicatorView;
 }
 
+@synthesize offset = _offset;
+@synthesize items = _items;
+
 #pragma mark - Initialization
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -36,13 +39,13 @@ static const CGFloat _duration = 0.25;
         _itemFont = [UIFont systemFontOfSize:[UIFont systemFontSize]];
         self.itemHeight = 36;
         self.indicatorHeight = 2;
-        _offsetScale = 0;
+        _offset = 0;
         _topViewRect = CGRectZero;
     }
     return self;
 }
 
-- (void)reloadViews {
+- (void)updateView {
     if (_scrollView) {
         [_scrollView removeFromSuperview];
     }
@@ -56,14 +59,14 @@ static const CGFloat _duration = 0.25;
     [self autosizeIfNeeded];
     NSInteger sumWidth = 0;
     for (int i = 0; i < _items.count; i++) {
-        if (_items[i].itemWidth == 0) {
-            _items[i].itemWidth = [self stringWidth:_items[i].title].width + _textEdgeInsert * 2;
+        if (_items[i].width == 0) {
+            _items[i].width = [self stringWidth:_items[i].title].width + _textEdgeInsert * 2;
         }
         if (_items[i].indicatorWidth == 0) {
-            _items[i].indicatorWidth = _items[i].itemWidth;
+            _items[i].indicatorWidth = _items[i].width;
         }
         
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(sumWidth, 0, _items[i].itemWidth, _itemHeight)];
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(sumWidth, 0, _items[i].width, _itemHeight)];
         view.backgroundColor = self.backgroundColor;
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture:)];
         [view addGestureRecognizer:tapGesture];
@@ -115,8 +118,8 @@ static const CGFloat _duration = 0.25;
     [_scrollView addSubview:_indicatorView];
 }
 
-- (void)reloadItems {
-    [_pageController reloadPageBarItems];
+- (void)updateItems {
+    [_pageController updatePageBarItems];
 }
 
 #pragma mark - Accessors
@@ -147,27 +150,27 @@ static const CGFloat _duration = 0.25;
         }
     } else {
         _items = items;
-        [self reloadViews];
+        [self updateView];
     }
 }
 
-- (void)setOffsetScale:(CGFloat)offsetScale {
-    _offsetScale = offsetScale;
-    NSInteger nextCount = _offsetScale / fabs(_offsetScale);
+- (void)setOffset:(CGFloat)offset {
+    _offset = offset;
+    NSInteger nextCount = _offset / fabs(_offset);
     //TODO
     if (_selectedView.tag - _viewTag + nextCount > _items.count - 1
         || _selectedView.tag - _viewTag + nextCount < 0) {
         nextCount = 0;
     }
     UIView *nextView = _itemViews[_selectedView.tag - _viewTag + nextCount];
-    CGFloat widthOffset = (_items[nextView.tag - _viewTag].indicatorWidth - _items[_selectedView.tag - _viewTag].indicatorWidth) * fabs(_offsetScale);
+    CGFloat widthOffset = (_items[nextView.tag - _viewTag].indicatorWidth - _items[_selectedView.tag - _viewTag].indicatorWidth) * fabs(_offset);
     _indicatorView.frame = CGRectMake(_indicatorView.frame.origin.x,
                                       _indicatorView.frame.origin.y,
                                       _items[_selectedView.tag - _viewTag].indicatorWidth + widthOffset,
                                       _indicatorView.frame.size.height);
     
-    CGFloat offset = (_selectedView.bounds.size.width + nextView.bounds.size.width) / 2 * _offsetScale;
-    _indicatorView.center = CGPointMake(_selectedView.center.x + offset, _indicatorView.center.y);
+    CGFloat newOffset = (_selectedView.bounds.size.width + nextView.bounds.size.width) / 2 * _offset;
+    _indicatorView.center = CGPointMake(_selectedView.center.x + newOffset, _indicatorView.center.y);
     
     CGFloat leftEdge = _scrollView.contentOffset.x;
     CGFloat rightEdge = leftEdge + self.bounds.size.width;
@@ -182,12 +185,12 @@ static const CGFloat _duration = 0.25;
     }
     
     UILabel *nextLabel = [nextView viewWithTag:_labelTag];
-    nextLabel.textColor = [MXPageBar colorFromColor:_textColor toColor:self.tintColor scale:fabs(_offsetScale)];
+    nextLabel.textColor = [MXPageBar colorFromColor:_textColor toColor:self.tintColor scale:fabs(_offset)];
     UILabel *selectedLabel = [_selectedView viewWithTag:_labelTag];
-    selectedLabel.textColor = [MXPageBar colorFromColor:self.tintColor toColor:_textColor scale:fabs(_offsetScale)];
+    selectedLabel.textColor = [MXPageBar colorFromColor:self.tintColor toColor:_textColor scale:fabs(_offset)];
     
-    if (fabs(_offsetScale) >= 1) {
-        _selectedView = _itemViews[_selectedView.tag - _viewTag + (NSInteger)_offsetScale];
+    if (fabs(_offset) >= 1) {
+        _selectedView = _itemViews[_selectedView.tag - _viewTag + (NSInteger)_offset];
     }
 }
 
@@ -226,7 +229,7 @@ static const CGFloat _duration = 0.25;
 
 - (BOOL)needsAutosize {
     for (int i = 0; i < _items.count; i++) {
-        if (_items[i].itemWidth != 0) {
+        if (_items[i].width != 0) {
             return NO;
         }
     }
@@ -237,12 +240,12 @@ static const CGFloat _duration = 0.25;
     if ([self needsAutosize]) {
         CGFloat maxWidth = 0;
         for (int i = 0; i < _items.count; i++) {
-            _items[i].itemWidth = [self stringWidth:_items[i].title].width  + _textEdgeInsert * 2;
-            maxWidth = maxWidth > _items[i].itemWidth? maxWidth: _items[i].itemWidth;
+            _items[i].width = [self stringWidth:_items[i].title].width  + _textEdgeInsert * 2;
+            maxWidth = maxWidth > _items[i].width? maxWidth: _items[i].width;
         }
         if (maxWidth * _items.count < self.bounds.size.width) {
             for (int i = 0; i < _items.count; i++) {
-                _items[i].itemWidth = self.bounds.size.width / _items.count;
+                _items[i].width = self.bounds.size.width / _items.count;
             }
         }
     }

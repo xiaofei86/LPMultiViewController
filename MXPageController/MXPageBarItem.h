@@ -6,11 +6,9 @@
 //  Copyright © 2015年 maxthon. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "MXPageProtocal.h"
 
-@class MXPageBar;
-
-@interface MXPageBarItem : NSObject
+@interface MXPageBarItem : NSObject <MXPageBarItemProtocal>
 
 - (instancetype)initWithTitle:(NSString *)title;
 
@@ -21,14 +19,5 @@
 
 - (instancetype)initWithCustomView:(UIView *)customView
                     indicatorWidth:(CGFloat)indicatorWidth;
-
-@property (nonatomic, strong) NSString *title;
-@property (nonatomic, assign) CGFloat itemWidth;
-@property (nonatomic, assign) CGFloat indicatorWidth;
-@property (nonatomic, assign) BOOL showBadge;
-
-@property (nonatomic, strong) UIView *customView;
-
-@property (nonatomic, weak) MXPageBar *pageBar;
 
 @end

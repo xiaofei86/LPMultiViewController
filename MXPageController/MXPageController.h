@@ -6,31 +6,11 @@
 //  Copyright © 2015年 maxthon. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "MXPageProtocal.h"
 
-@class MXPageBarItem;
-@class MXPageBar;
-
-@interface MXPageController : UIViewController
-
-@property (nonatomic, strong) MXPageBar *pageBar;
-
-@property (nonatomic, strong) NSArray<UIViewController *> *viewControllers;
+@interface MXPageController : UIViewController <MXPageControllerProtocal>
 
 @property (nonatomic, strong) UIView *bottomView;
-
 @property (nonatomic, strong) UIView *topView;
-
-@property (nonatomic, assign) NSUInteger selectedIndex;
-
-@property (nonatomic, assign) CGFloat offsetScale;
-
-@property (nonatomic, assign) BOOL scrollEnable;
-
-- (void)reloadViews;
-
-- (void)reloadPageBarViews;
-
-- (void)reloadPageBarItems;
 
 @end

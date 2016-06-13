@@ -46,6 +46,9 @@
 		AF602D891D0CF7950047B69D /* MXPageBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXPageBarItem.m; sourceTree = "<group>"; };
 		AF602D8A1D0CF7950047B69D /* MXPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXPageController.h; sourceTree = "<group>"; };
 		AF602D8B1D0CF7950047B69D /* MXPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXPageController.m; sourceTree = "<group>"; };
+		AF602D901D0E4A960047B69D /* MXPageProtocal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXPageProtocal.h; sourceTree = "<group>"; };
+		AF8E23F81D0E5DBE00A55B9A /* MXPageBar_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXPageBar_Private.h; sourceTree = "<group>"; };
+		AF8E23F91D0E5FCF00A55B9A /* MXPageBarItem_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXPageBarItem_Private.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,14 +105,8 @@
 		AF602D611D0CF6BA0047B69D /* MXPageController */ = {
 			isa = PBXGroup;
 			children = (
-				AF602D861D0CF7950047B69D /* MXPageBar.h */,
-				AF602D871D0CF7950047B69D /* MXPageBar.m */,
-				AF602D881D0CF7950047B69D /* MXPageBarItem.h */,
-				AF602D891D0CF7950047B69D /* MXPageBarItem.m */,
-				AF602D8A1D0CF7950047B69D /* MXPageController.h */,
-				AF602D8B1D0CF7950047B69D /* MXPageController.m */,
-				AF602D6F1D0CF6BA0047B69D /* UIViewController+Page.h */,
-				AF602D701D0CF6BA0047B69D /* UIViewController+Page.m */,
+				AF8E23F71D0E537000A55B9A /* Base */,
+				AF602D901D0E4A960047B69D /* MXPageProtocal.h */,
 			);
 			name = MXPageController;
 			path = ../MXPageController;
@@ -128,6 +125,23 @@
 				AF602D7E1D0CF6D90047B69D /* TabViewController4.m */,
 			);
 			name = TabControllers;
+			sourceTree = "<group>";
+		};
+		AF8E23F71D0E537000A55B9A /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				AF8E23F81D0E5DBE00A55B9A /* MXPageBar_Private.h */,
+				AF8E23F91D0E5FCF00A55B9A /* MXPageBarItem_Private.h */,
+				AF602D861D0CF7950047B69D /* MXPageBar.h */,
+				AF602D871D0CF7950047B69D /* MXPageBar.m */,
+				AF602D881D0CF7950047B69D /* MXPageBarItem.h */,
+				AF602D891D0CF7950047B69D /* MXPageBarItem.m */,
+				AF602D8A1D0CF7950047B69D /* MXPageController.h */,
+				AF602D8B1D0CF7950047B69D /* MXPageController.m */,
+				AF602D6F1D0CF6BA0047B69D /* UIViewController+Page.h */,
+				AF602D701D0CF6BA0047B69D /* UIViewController+Page.m */,
+			);
+			name = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

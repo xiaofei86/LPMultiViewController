@@ -49,4 +49,8 @@ static const void *pageControllerKey = &pageControllerKey;
     
 }
 
+- (void)updateView {
+    
+}
+
 @end

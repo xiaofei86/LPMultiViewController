@@ -8,18 +8,27 @@
 
 #import "MXPageController.h"
 #import "UIViewController+Page.h"
+#import "MXPageBar_Private.h"
 
 static CGFloat _duration = 0.25;
 
 @interface MXPageController () <UIScrollViewDelegate, MXPageBarDelegate>
 
+@property (nonatomic, strong) MXPageBar *mPageBar;
+
 @end
 
-@implementation MXPageController{
+@implementation MXPageController {
     UIScrollView *_scrollView;
     BOOL _isSelectedScroll;
     BOOL _isScrollBegin;
 }
+
+@synthesize offset = _offset;
+@synthesize viewControllers = _viewControllers;
+@synthesize selectedIndex = _selectedIndex;
+@synthesize scrollEnable = _scrollEnable;
+@synthesize pageBar = _pageBar;
 
 #pragma mark - Initialization
 
@@ -39,14 +48,14 @@ static CGFloat _duration = 0.25;
     self.view.backgroundColor = [UIColor whiteColor];
     
     _pageBar = [[MXPageBar alloc] initWithFrame:CGRectZero];
-    _pageBar.delegate = self;
+    self.mPageBar.delegate = self;
     
     _topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 0)];
     _bottomView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)reloadViews {
-    if (_scrollView) {//TODO释放子控制器的presented指针
+    if (_scrollView) { // TODO: release the presented pointer of child vc
         for (UIView *view in self.view.subviews) {
             [view removeFromSuperview];
         }
@@ -72,9 +81,9 @@ static CGFloat _duration = 0.25;
         }
         [items addObject:vc.pageBarItem];
     }];
-    _pageBar.pageController = self;
-    _pageBar.topViewRect = _topView.frame;
-    _pageBar.items = items;
+    self.mPageBar.pageController = self;
+    self.mPageBar.topViewRect = _topView.frame;
+    self.mPageBar.items = items;
     [self.view addSubview:_pageBar];
     
     if (_bottomView) {
@@ -87,11 +96,11 @@ static CGFloat _duration = 0.25;
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    [self reloadFrame];
+    [self updateFrame];
 }
 
-- (void)reloadFrame {
-    _pageBar.center = CGPointMake(_pageBar.center.x, _topView.frame.size.height + _pageBar.frame.size.height * (0.5 - _offsetScale));
+- (void)updateFrame {
+    _pageBar.center = CGPointMake(_pageBar.center.x, _topView.frame.size.height + _pageBar.frame.size.height * (0.5 - _offset));
     _scrollView.frame = CGRectMake(0, CGRectGetMaxY(_pageBar.frame),
                                    self.view.bounds.size.width,
                                    self.view.bounds.size.height - CGRectGetMaxY(_pageBar.frame) - _bottomView.bounds.size.height);
@@ -120,6 +129,10 @@ static CGFloat _duration = 0.25;
 
 #pragma mark - Accessors
 
+- (MXPageBar *)mPageBar {
+    return (MXPageBar *)_pageBar;
+}
+
 - (void)setViewControllers:(NSArray<UIViewController *> *)viewControllers {
     _viewControllers = viewControllers;
     if (_viewControllers) {
@@ -138,7 +151,7 @@ static CGFloat _duration = 0.25;
     }
     _topView = topView;
     _topView.frame = CGRectMake(0, 0, self.view.bounds.size.width, _topView.bounds.size.height);
-    _pageBar.topViewRect = _topView.frame;
+    self.mPageBar.topViewRect = _topView.frame;
     [self.view addSubview:_topView];
 }
 
@@ -154,8 +167,8 @@ static CGFloat _duration = 0.25;
 }
 
 - (void)setOffsetScale:(CGFloat)offsetScale {
-    _offsetScale = offsetScale;
-    [self reloadFrame];
+    _offset = offsetScale;
+    [self updateFrame];
 }
 
 - (void)setScrollEnable:(BOOL)scrollEnable {
@@ -166,19 +179,19 @@ static CGFloat _duration = 0.25;
 
 #pragma mark - Public
 
-- (void)reloadPageBarViews {
+- (void)updatePageBar {
     if (_pageBar) {
-        [_pageBar reloadViews];
-        [self reloadFrame];
+        [_pageBar updateView];
+        [self updateFrame];
     }
 }
 
-- (void)reloadPageBarItems {
+- (void)updatePageBarItems {
     NSMutableArray<MXPageBarItem *> *items = [NSMutableArray array];
     for (UIViewController *vc in _viewControllers) {
         [items addObject:vc.pageBarItem];
     }
-    _pageBar.items = items;
+    self.mPageBar.items = items;
 }
 
 #pragma mark - MXPageBarDelegate
@@ -207,24 +220,24 @@ static CGFloat _duration = 0.25;
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [self.view endEditing:YES];
     CGFloat refrenceOffset = _selectedIndex * self.view.bounds.size.width;
-    CGFloat offsetScale = (scrollView.contentOffset.x - refrenceOffset) / self.view.bounds.size.width;
-    if (fmodf(offsetScale, 1) != 0) {
+    CGFloat offset = (scrollView.contentOffset.x - refrenceOffset) / self.view.bounds.size.width;
+    if (fmodf(offset, 1) != 0) {
         _isSelectedScroll = NO;
     }
     if (_isScrollBegin) {
         [_viewControllers[_selectedIndex] pageViewWillDisappear:YES];
-        NSInteger offset = offsetScale / fabs(offsetScale) * ceil(fabs(offsetScale));
-        [_viewControllers[_selectedIndex + offset] pageViewWillAppear:YES];
+        NSInteger newOffset = offset / fabs(offset) * ceil(fabs(offset));
+        [_viewControllers[_selectedIndex + newOffset] pageViewWillAppear:YES];
         _isScrollBegin = NO;
     }
     
     if (_isSelectedScroll) {
-        _selectedIndex += offsetScale;
+        _selectedIndex += offset;
     } else {
-        _pageBar.offsetScale = offsetScale;
-        if (fabs(offsetScale) >= 1) {
+        _pageBar.offset = offset;
+        if (fabs(offset) >= 1) {
             [_viewControllers[_selectedIndex] pageViewDidDisappear:YES];
-            _selectedIndex += (NSInteger)offsetScale;
+            _selectedIndex += (NSInteger)offset;
             [_viewControllers[_selectedIndex] pageViewDidAppear:YES];
             _isScrollBegin = YES;
         }
@@ -233,7 +246,7 @@ static CGFloat _duration = 0.25;
     [self.view endEditing:YES];
 }
 
-#pragma mark - RunLoop
+#pragma mark - Perform
 
 - (void)performWithDelay:(CGFloat)delay completion:(void (^)(void))block {
     block = [block copy];

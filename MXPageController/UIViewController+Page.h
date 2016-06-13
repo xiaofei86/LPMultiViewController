@@ -6,8 +6,7 @@
 //  Copyright © 2015年 maxthon. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
+#import "MXPageProtocal.h"
 #import "MXPageBarItem.h"
 #import "MXPageBar.h"
 #import "MXPageController.h"
@@ -21,5 +20,7 @@
 - (void)pageViewDidAppear:(BOOL)animated;
 - (void)pageViewWillDisappear:(BOOL)animated;
 - (void)pageViewDidDisappear:(BOOL)animated;
+
+- (void)updateView;
 
 @end
